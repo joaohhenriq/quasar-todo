@@ -1,22 +1,3 @@
-# Quasar App (quasar-todo)
+# Quasar Todo
 
-A Quasar Framework app
-
-## Install the dependencies
-```bash
-npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+<img src="static/1.PNG" width="700"> <img src="static/2.PNG" width="700"> <img src="static/3.PNG" width="700"> <img src="static/4.PNG" width="700">
