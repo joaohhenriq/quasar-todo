@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar>
         <q-btn
           flat
@@ -10,33 +10,18 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
+      <div class="q-px-lg q-pt-xl q-mb-md">
+        <div class="text-h3">Todo</div>
+        <div class="text-subtitle1">{{todaysDate}}</div>
+      </div>
+      <q-img src="statics/nice.jpg" class="header-image absolute-top"></q-img>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item-label header class="text-grey-8">Essential Links</q-item-label>
+        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -48,6 +33,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import { date } from 'quasar'
 
 export default {
   name: 'MainLayout',
@@ -56,7 +42,14 @@ export default {
     EssentialLink
   },
 
-  data () {
+  computed: {
+    todaysDate() {
+      let timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'dddd D MMMM')
+    }
+  },
+
+  data() {
     return {
       leftDrawerOpen: false,
       essentialLinks: [
@@ -101,3 +94,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.header-image {
+  height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+  filter: grayscale(100%);
+}
+</style>
