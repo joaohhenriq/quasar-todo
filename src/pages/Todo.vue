@@ -3,8 +3,8 @@
     <q-list separator bordered class="bg-white">
       <q-item
         v-ripple
-        v-for="task in tasks"
-        :key="task.title"
+        v-for="(task, index) in tasks"
+        :key="index"
         @click="task.done = !task.done"
         clickable
         :class="{'done bg-blue-1': task.done}"
@@ -14,6 +14,9 @@
         </q-item-section>
         <q-item-section>
           <q-item-label>{{task.title}}</q-item-label>
+        </q-item-section>
+        <q-item-section v-if="task.done" side>
+          <q-btn flat round dense color="primary" icon="delete" @click.stop="deleteTask(index)" />
         </q-item-section>
       </q-item>
     </q-list>
@@ -38,6 +41,20 @@ export default {
           done: false,
         },
       ]
+    }
+  },
+  methods: {
+    deleteTask(index) {
+      this.$q.dialog({
+        title: 'Confirm',
+        message: 'Would you like to delete the task?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.tasks.splice(index, 1) //delete one item (second param) at the index 
+        this.$q.notify('Task deleted')
+      })
+
     }
   }
 }
