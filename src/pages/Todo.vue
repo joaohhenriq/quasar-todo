@@ -36,6 +36,10 @@
         </q-item-section>
       </q-item>
     </q-list>
+    <div class="no-tasks absolute-center" v-if="!tasks.length">
+      <q-icon name="check" size="100px" color="primary" />
+      <div class="text-h5 text-primary text-center">No tasks</div>
+    </div>
   </q-page>
 </template>
 
@@ -90,5 +94,8 @@ export default {
     text-decoration: line-through;
     color: #bbb;
   }
+}
+.no-tasks {
+  opacity: 0.5;
 }
 </style>
